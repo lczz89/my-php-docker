@@ -75,6 +75,7 @@ RUN  CONFIG="\
 	&& wget -c --tries=0 https://pecl.php.net/get/solr-2.4.0.tgz -O /tmp/solr-2.4.0.tgz \
 	&& wget -c --tries=0 https://pecl.php.net/get/redis-4.2.0.tgz -O /tmp/redis-4.2.0.tgz \
 	&& wget -c --tries=0 https://pecl.php.net/get/memcache-2.2.7.tgz -O /tmp/memcache-2.2.7.tgz \
+	&& wget -c --tries=0 https://xdebug.org/files/xdebug-2.5.0rc1.tgz  -O /tmp/xdebug-2.5.0rc1.tgz \
 	&& cd /tmp \
 	&& for tar in *.gz;  do tar xvf $tar -C /tmp; done \
 	&& for tar in *.tgz;  do tar xvf $tar -C /tmp; done \
@@ -92,7 +93,7 @@ RUN  CONFIG="\
 	&& ./configure $CONFIG \
 	&& make \
 	&& make install \
-	&& cp -p /tmp/php-fpm.conf /usr/local/etc/php/5.6/etc/php-fpm.conf \
+	&& mv /tmp/php-fpm.conf /usr/local/etc/php/5.6/etc/php-fpm.conf \
 	#docker要把daemonizes设置为no,默认是yes的
 	#安装ftp扩展
 	&& cd /tmp/php-5.6.40/ext/ftp/ \
@@ -100,6 +101,13 @@ RUN  CONFIG="\
 	&& ./configure --with-php-config=/usr/local/etc/php/5.6/bin/php-config --enable-ftp \
 	&& make \
 	&& make install \
+	#xdebug
+	&& cd /tmp/xdebug-2.5.0RC1 \
+	&& /usr/local/etc/php/5.6/bin/phpize \
+	&& ./configure --with-php-config=/usr/local/etc/php/5.6/bin/php-config \
+	&& make \
+	&& make install \
+	&& cp -p modules/xdebug.so  /usr/local/etc/php/5.6/lib/php/extensions/no-debug-non-zts-20131226/xdebug.so \
 	#安装redis扩展
 	&& cd /tmp/redis-4.2.0 \
 	&& /usr/local/etc/php/5.6/bin/phpize \
@@ -119,11 +127,11 @@ RUN  CONFIG="\
 	&& make \
 	&& make install \
 	#安装composer
-	#&& wget -c --tries=0 https://getcomposer.org/download/1.8.0/composer.phar -O /usr/sbin/composer \
-	#&& chmod +x /usr/sbin/composer \
+	&& wget -c --tries=0 https://getcomposer.org/download/1.8.0/composer.phar -O /usr/sbin/composer \
+	&& chmod +x /usr/sbin/composer \
 	&& rm -rf /tmp/* \
 	&& ln -s /usr/local/etc/php/5.6/sbin/php-fpm /usr/sbin/php-fpm \
-	#apk del mypacks删掉虚拟组包，能使容器小很多
+	##apk del mypacks删掉虚拟组包，能使容器小很多
 	&& apk del mypacks
 
 COPY php.ini /usr/local/etc/php/5.6/etc/		
