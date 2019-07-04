@@ -1,0 +1,42 @@
+2019/07/02 11:59:09 [notice] 1#1: using the "epoll" event method
+2019/07/02 11:59:09 [notice] 1#1: nginx/1.15.3
+2019/07/02 11:59:09 [notice] 1#1: built by gcc 6.4.0 (Alpine 6.4.0) 
+2019/07/02 11:59:09 [notice] 1#1: OS: Linux 4.14.116-boot2docker
+2019/07/02 11:59:09 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2019/07/02 11:59:09 [notice] 1#1: start worker processes
+2019/07/02 11:59:09 [notice] 1#1: start worker process 6
+2019/07/02 11:59:09 [notice] 6#6: sched_setaffinity(): using cpu #0
+2019/07/02 14:12:10 [notice] 1#1: signal 15 (SIGTERM) received, exiting
+2019/07/02 14:12:10 [notice] 6#6: exiting
+2019/07/02 14:12:10 [notice] 6#6: exit
+2019/07/02 14:12:10 [notice] 1#1: signal 17 (SIGCHLD) received from 6
+2019/07/02 14:12:10 [notice] 1#1: worker process 6 exited with code 0
+2019/07/02 14:12:10 [notice] 1#1: exit
+2019/07/02 14:18:51 [notice] 1#1: using the "epoll" event method
+2019/07/02 14:18:51 [notice] 1#1: nginx/1.15.3
+2019/07/02 14:18:51 [notice] 1#1: built by gcc 6.4.0 (Alpine 6.4.0) 
+2019/07/02 14:18:51 [notice] 1#1: OS: Linux 4.14.116-boot2docker
+2019/07/02 14:18:51 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2019/07/02 14:18:51 [notice] 1#1: start worker processes
+2019/07/02 14:18:51 [notice] 1#1: start worker process 6
+2019/07/02 14:18:51 [notice] 6#6: sched_setaffinity(): using cpu #0
+2019/07/02 14:21:31 [notice] 1#1: signal 15 (SIGTERM) received, exiting
+2019/07/02 14:21:31 [notice] 6#6: exiting
+2019/07/02 14:21:31 [notice] 6#6: exit
+2019/07/02 14:21:31 [notice] 1#1: signal 17 (SIGCHLD) received from 6
+2019/07/02 14:21:31 [notice] 1#1: worker process 6 exited with code 0
+2019/07/02 14:21:31 [notice] 1#1: exit
+2019/07/02 14:31:49 [notice] 1#1: using the "epoll" event method
+2019/07/02 14:31:49 [notice] 1#1: nginx/1.15.3
+2019/07/02 14:31:49 [notice] 1#1: built by gcc 6.4.0 (Alpine 6.4.0) 
+2019/07/02 14:31:49 [notice] 1#1: OS: Linux 4.14.116-boot2docker
+2019/07/02 14:31:49 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2019/07/02 14:31:49 [notice] 1#1: start worker processes
+2019/07/02 14:31:49 [notice] 1#1: start worker process 6
+2019/07/02 14:31:49 [notice] 6#6: sched_setaffinity(): using cpu #0
+2019/07/02 14:32:15 [notice] 1#1: signal 15 (SIGTERM) received, exiting
+2019/07/02 14:32:15 [notice] 6#6: exiting
+2019/07/02 14:32:15 [notice] 6#6: exit
+2019/07/02 14:32:15 [notice] 1#1: signal 17 (SIGCHLD) received from 6
+2019/07/02 14:32:15 [notice] 1#1: worker process 6 exited with code 0
+2019/07/02 14:32:15 [notice] 1#1: exit
