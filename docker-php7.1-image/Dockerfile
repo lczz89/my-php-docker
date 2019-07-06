@@ -28,3 +28,4 @@ RUN set -ex \
 	&& rm -rf /usr/share/php7 \
     && rm -rf /tmp/* \
     && apk del .memcached-deps .phpize-deps
+COPY php-fpm.conf /usr/local/etc/php-fpm.conf
