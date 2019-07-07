@@ -1,0 +1,70 @@
+branches:
+  exclude: [master]
+  
+pipeline:
+  build-fpm:
+    image: plugins/docker
+    repo: registry.cn-hangzhou.aliyuncs.com/hangjia/php
+    registry: registry.cn-hangzhou.aliyuncs.com
+    dockerfile: ${PHP_VERSION}/fpm/Dockerfile
+    context: ${PHP_VERSION}/fpm
+    secrets: [ docker_username, docker_password ]
+    tag: ${PHP_VERSION}-fpm
+    build_args:
+      - PHP_VERSION=${PHP_VERSION}
+    when:
+      branch: [fpm]
+
+  build-swoole:
+    image: plugins/docker
+    repo: registry.cn-hangzhou.aliyuncs.com/hangjia/php
+    registry: registry.cn-hangzhou.aliyuncs.com
+    dockerfile: ${PHP_VERSION}/swoole/${SWOOLE_VERSION}/Dockerfile
+    context: ${PHP_VERSION}/swoole/${SWOOLE_VERSION}
+    secrets: [ docker_username, docker_password ]
+    tag: ${PHP_VERSION}-swoole${SWOOLE_VERSION}
+    build_args:
+      - PHP_VERSION=${PHP_VERSION}
+    when:
+      branch: [swoole,fpm]
+      matrix:
+        PHP_VERSION: 7.2.6
+
+  build-composer:
+    image: plugins/docker
+    repo: registry.cn-hangzhou.aliyuncs.com/hangjia/php
+    registry: registry.cn-hangzhou.aliyuncs.com
+    dockerfile: ${PHP_VERSION}/composer/${COMPOSER_VERSION}/Dockerfile
+    context: ${PHP_VERSION}/composer/${COMPOSER_VERSION}
+    secrets: [ docker_username, docker_password ]
+    tag: ${PHP_VERSION}-composer${SWOOLE_VERSION}
+    build_args:
+      - COMPOSER_VERSION=${COMPOSER_VERSION}
+      - PHP_VERSION=${PHP_VERSION}
+    when:
+      branch: [composer,fpm]
+      matrix:
+        PHP_VERSION: 7.2.6
+
+  build-xdebug:
+    image: plugins/docker
+    repo: registry.cn-hangzhou.aliyuncs.com/hangjia/php
+    registry: registry.cn-hangzhou.aliyuncs.com
+    dockerfile: ${PHP_VERSION}/xdebug/${XDEBUG_VERSION}/Dockerfile
+    context: ${PHP_VERSION}/xdebug/${XDEBUG_VERSION}
+    secrets: [docker_username, docker_password]
+    tag: ${PHP_VERSION}-xdebug${XDEBUG_VERSION}
+    build_args:
+      - PHP_VERSION=${PHP_VERSION}
+    when:
+      branch: [xdebug,fpm]
+      matrix:
+        PHP_VERSION: 7.2.6
+
+matrix:
+  include:
+    - XDEBUG_VERSION: 2.6.1
+      COMPOSER_VERSION: 1.7.2
+      SWOOLE_VERSION: 4.0.4
+      PHP_VERSION: 7.2.6
+    - PHP_VERSION: 7.1.30

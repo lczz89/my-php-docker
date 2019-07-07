@@ -5,11 +5,11 @@ services:
     privileged: true
     volumes:
       - phpsocket:/dev/shm
-      - /f/hangjiayun_proj/proj:/home/www
-      - /f/hangjiayun_proj/conf.d:/etc/nginx/conf.d
-      - /f/hangjiayun_proj/nginx_conf/fastcgi.conf:/etc/nginx/fastcgi.conf
-      - /f/hangjiayun_proj/nginx_conf/nginx.conf:/etc/nginx/nginx.conf
-      - /f/hangjiayun_proj/logs:/home/logs
+      - ${PROJ_PATH}/proj:/home/www
+      - ${DOCKER_PATH}/conf.d:/etc/nginx/conf.d
+      - ${DOCKER_PATH}/nginx_conf/fastcgi.conf:/etc/nginx/fastcgi.conf
+      - ${DOCKER_PATH}/nginx_conf/nginx.conf:/etc/nginx/nginx.conf
+      - ${DOCKER_PATH}/logs:/home/logs
   #  working_dir: /usr/local/bin/entrypoint
   #  entrypoint:
   #    - /usr/local/bin/entrypoint/nginx_entrypoint.sh
@@ -19,10 +19,11 @@ services:
       - 80:80
   backend:
     image: php7.1:latest
+    restart: always
     volumes:
       - phpsocket:/dev/shm
-      - /f/hangjiayun_proj/proj:/home/www
-      - /f/hangjiayun_proj/php_conf/www.conf/:/usr/local/etc/php-fpm.d/www.conf
-      - /f/hangjiayun_proj/php_conf/php-fpm.conf/:/usr/local/etc/php-fpm.conf
+      - ${PROJ_PATH}/proj:/home/www
+  #    - ${DOCKER_PATH}/php_conf/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ${DOCKER_PATH}/php_conf/php-fpm.conf:/usr/local/etc/php-fpm.conf
 volumes:
   phpsocket:
